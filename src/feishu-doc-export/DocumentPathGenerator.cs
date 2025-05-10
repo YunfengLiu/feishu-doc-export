@@ -34,8 +34,11 @@ namespace feishu_doc_export
 
         private static void GenerateDocumentPath(WikiNodeItemDto document, string parentFolderPath, List<WikiNodeItemDto> documents)
         {
+            // 处理文件名，只保留"-"之前的数字部分
+            string processedTitle = ProcessFileName(document.Title);
+            
             // 替换文件名中的非法字符
-            string title = Regex.Replace(document.Title, @"[\\/:\*\?""<>\|]", "-");
+            string title = Regex.Replace(processedTitle, @"[\\/:\*\?""<>\|]", "-");
             string documentFolderPath = Path.Combine(parentFolderPath, title);
 
             documentPaths[document.ObjToken] = documentFolderPath;
@@ -45,6 +48,24 @@ namespace feishu_doc_export
             {
                 GenerateDocumentPath(childDocument, documentFolderPath, documents);
             }
+        }
+
+        /// <summary>
+        /// 处理文件名，只保留"-"之前的数字部分
+        /// </summary>
+        /// <param name="fileName">原始文件名</param>
+        /// <returns>处理后的文件名</returns>
+        private static string ProcessFileName(string fileName)
+        {
+            // 使用正则表达式匹配"-"之前的数字部分
+            var match = Regex.Match(fileName, @"^(\d+)-");
+            if (match.Success)
+            {
+                // 如果匹配到数字前缀，返回数字部分
+                return match.Groups[1].Value;
+            }
+            // 如果没有匹配到数字前缀，返回原始文件名
+            return fileName;
         }
 
         private static IEnumerable<WikiNodeItemDto> GetChildDocuments(WikiNodeItemDto document, List<WikiNodeItemDto> documents)
