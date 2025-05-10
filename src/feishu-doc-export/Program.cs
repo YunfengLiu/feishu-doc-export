@@ -1,5 +1,4 @@
-﻿
-using Aspose.Words;
+﻿using Aspose.Words;
 using Aspose.Words.Drawing;
 using Aspose.Words.Saving;
 using feishu_doc_export.Dtos;
@@ -111,16 +110,19 @@ namespace feishu_doc_export
                         }
                     }
 
+                    // 处理文件名，只保留"-"之前的数字部分
+                    string processedName = ProcessFileName(item.Name);
+                    
                     // 文件名超出长度限制，不支持导出
-                    if (item.Name.Length > 64)
+                    if (processedName.Length > 64)
                     {
-                        var left64FileName = item.Name.PadLeft(61) + $"···.{fileExt}";
+                        var left64FileName = processedName.PadLeft(61) + $"···.{fileExt}";
                         noSupportExportFiles.Add($"(文件名超长){left64FileName}");
                         Console.WriteLine($"文档【{left64FileName}】的文件命名长度超出系统文件命名的长度限制，已忽略");
                         continue;
                     }
 
-                    Console.WriteLine($"正在导出文档————————{count++}.【{item.Name}.{showFileExt}】");
+                    Console.WriteLine($"正在导出文档————————{count++}.【{processedName}.{showFileExt}】");
 
                     try
                     {
@@ -236,16 +238,19 @@ namespace feishu_doc_export
                         }
                     }
 
+                    // 处理文件名，只保留"-"之前的数字部分
+                    string processedName = ProcessFileName(item.Title);
+                    
                     // 文件名超出长度限制，不支持导出
-                    if (item.Title.Length > 64)
+                    if (processedName.Length > 64)
                     {
-                        var left64FileName = item.Title.PadLeft(61) + $"···.{fileExt}";
+                        var left64FileName = processedName.PadLeft(61) + $"···.{fileExt}";
                         noSupportExportFiles.Add($"(文件名超长){left64FileName}");
                         Console.WriteLine($"文档【{left64FileName}】的文件命名长度超出系统文件命名的长度限制，已忽略");
                         continue;
                     }
 
-                    Console.WriteLine($"正在导出文档————————{count++}.【{item.Title}.{showFileExt}】");
+                    Console.WriteLine($"正在导出文档————————{count++}.【{processedName}.{showFileExt}】");
 
                     try
                     {
@@ -408,5 +413,22 @@ namespace feishu_doc_export
 
         }
         
+        /// <summary>
+        /// 处理文件名，只保留"-"之前的数字部分
+        /// </summary>
+        /// <param name="fileName">原始文件名</param>
+        /// <returns>处理后的文件名</returns>
+        private static string ProcessFileName(string fileName)
+        {
+            // 使用正则表达式匹配"-"之前的数字部分
+            var match = System.Text.RegularExpressions.Regex.Match(fileName, @"^(\d+)-");
+            if (match.Success)
+            {
+                // 如果匹配到数字前缀，返回数字部分
+                return match.Groups[1].Value;
+            }
+            // 如果没有匹配到数字前缀，返回原始文件名
+            return fileName;
+        }
     }
 }
