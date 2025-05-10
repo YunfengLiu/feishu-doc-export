@@ -33,7 +33,7 @@ dotnet publish -c Release -r osx-x64 --self-contained true /p:PublishSingleFile=
 # Linux
 dotnet publish -c Release -r linux-x64 --self-contained true /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true
 ```
-    
+
     3. 在 `bin/Release/net6.0/[平台]/publish` 目录下找到可执行文件。
 
 3. 按照[命令行执行](#命令行执行)章节进行使用。
