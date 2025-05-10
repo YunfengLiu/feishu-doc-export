@@ -12,6 +12,32 @@
 2. 重新打包成可执行文件时报了错，程序序需要 `Aspose.Words` 的许可证文件，这里注释了许可证文件。
     - `src/feishu-doc-export/GlobalConfig.cs`
 
+### 使用说明
+
+1. 按照[如何使用](#如何使用)章节对飞书进行相关操作。
+    - 操作前建议先备份原始飞书文档，以防数据丢失。
+
+2. 将代码打包成可执行文件：
+    1. 安装 [.NET SDK](https://dotnet.microsoft.com/download)（建议使用 .NET 6 或更高版本）
+    2. 进入项目目录并使用以下命令打包：
+
+```bash
+cd src/feishu-doc-export
+
+# Windows
+dotnet publish -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true
+
+# macOS
+dotnet publish -c Release -r osx-x64 --self-contained true /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true
+
+# Linux
+dotnet publish -c Release -r linux-x64 --self-contained true /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true
+```
+    
+    3. 在 `bin/Release/net6.0/[平台]/publish` 目录下找到可执行文件。
+
+3. 按照[命令行执行](#命令行执行)章节进行使用。
+
 ## 动机
 
 最近也是公司办公软件从飞书切换回了企业微信，自然就产生了一些文档要迁移的问题，由于文档量过多（大概有700多个），无论是从飞书手动下载为`Word`或`PDF`格式的文档，还是将内容复制到本地新建`Markdown`文件都是一件极为繁琐的事情。于是便找到了两个GitHub上已有的飞书文档导出工具`Feishu2MD`和`feishu-backup`，但是他们都有一些问题不太满足我的需求。
