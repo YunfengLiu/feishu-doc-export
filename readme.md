@@ -1,6 +1,17 @@
 # feishu-doc-export
 一个支持Windows、Mac、Linux系统的飞书文档一键导出服务，仅需一行命令即可将飞书知识库的全部文档同步到本地电脑。支持导出`markdown`，`docx`，`pdf`三种格式。导出速度嘎嘎快，实测**700**多个文档导出只需**25**分钟，且程序是后台挂机运行，不影响正常工作。最新版本内容，请查看文章最后的**更新日志**
 
+## 0510-lyf-更新
+
+### 更新概述
+
+1. 针对自己的数据做了修改，主要是以下两个文件: 
+-   `src/feishu-doc-export/Program.cs`
+-   `src/feishu-doc-export/DocumentPathGenerator.cs` 
+
+2. 重新打包成可执行文件时报了错，程序序需要 `Aspose.Words` 的许可证文件，这里注释了许可证文件。
+-   `src/feishu-doc-export/GlobalConfig.cs`
+
 ## 动机
 
 最近也是公司办公软件从飞书切换回了企业微信，自然就产生了一些文档要迁移的问题，由于文档量过多（大概有700多个），无论是从飞书手动下载为`Word`或`PDF`格式的文档，还是将内容复制到本地新建`Markdown`文件都是一件极为繁琐的事情。于是便找到了两个GitHub上已有的飞书文档导出工具`Feishu2MD`和`feishu-backup`，但是他们都有一些问题不太满足我的需求。
