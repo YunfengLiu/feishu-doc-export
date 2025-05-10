@@ -58,9 +58,9 @@ namespace feishu_doc_export
 
         private static void InitAsposeLicense()
         {
-            License license = new License();
-            // 加载本地密钥
-            license.SetLicense("C:\\Users\\User\\Desktop\\Aspose.lic");
+            // 暂时注释掉许可证检查
+            // License license = new License();
+            // license.SetLicense("C:\\Users\\User\\Desktop\\Aspose.lic");
         }
 
         /// <summary>
