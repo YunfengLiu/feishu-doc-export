@@ -18,21 +18,23 @@
     - 操作前建议先备份原始飞书文档，以防数据丢失。
 
 2. 将代码打包成可执行文件：
-    1. 安装 [.NET SDK](https://dotnet.microsoft.com/download)（建议使用 .NET 6 或更高版本）
+
+    1. 安装 [.NET SDK](https://dotnet.microsoft.com/download)
+
     2. 进入项目目录并使用以下命令打包：
 
-```bash
-cd src/feishu-doc-export
+        ```bash
+        cd src/feishu-doc-export
 
-# Windows
-dotnet publish -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true
+        # Windows
+        dotnet publish -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true
 
-# macOS
-dotnet publish -c Release -r osx-x64 --self-contained true /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true
+        # macOS
+        dotnet publish -c Release -r osx-x64 --self-contained true /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true
 
-# Linux
-dotnet publish -c Release -r linux-x64 --self-contained true /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true
-```
+        # Linux
+        dotnet publish -c Release -r linux-x64 --self-contained true /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true
+        ```
 
     3. 在 `bin/Release/net6.0/[平台]/publish` 目录下找到可执行文件。
 
