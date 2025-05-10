@@ -6,11 +6,11 @@
 ### 更新概述
 
 1. 针对自己的数据做了修改，主要是以下两个文件: 
-  - `src/feishu-doc-export/Program.cs`
-  - `src/feishu-doc-export/DocumentPathGenerator.cs` 
+    - `src/feishu-doc-export/Program.cs`
+    - `src/feishu-doc-export/DocumentPathGenerator.cs` 
 
 2. 重新打包成可执行文件时报了错，程序序需要 `Aspose.Words` 的许可证文件，这里注释了许可证文件。
-  - `src/feishu-doc-export/GlobalConfig.cs`
+    - `src/feishu-doc-export/GlobalConfig.cs`
 
 ## 动机
 
